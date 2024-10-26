@@ -17,6 +17,7 @@
 /.next/
 /out/
 
+
 # production
 /build
 
@@ -31,7 +32,8 @@ yarn-error.log*
 
 # env files (can opt-in for commiting if needed)
 .env*
-
+# Hiding environment API
+.env.local
 # vercel
 .vercel
 
