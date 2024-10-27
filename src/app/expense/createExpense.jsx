@@ -17,6 +17,7 @@ import EmojiPicker from "emoji-picker-react";
 import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import BasicAlerts from '../../components/ui/alert';
+
 const createExpense = ({addExpense = () => {} }) => {
      // Set States
      const [name, setName] = useState('')
@@ -25,7 +26,7 @@ const createExpense = ({addExpense = () => {} }) => {
      const [openEmojiPicker, setOpenEmojiPicker] = useState()
      const [alertMessage, setAlertMessage] = useState('')
      const [alertSeverity, setAlertSeverity] = useState('')
-
+     // get data from the database
      const onCreateExpense = async() => {
         try {
             const date = new Date();
@@ -50,6 +51,7 @@ const createExpense = ({addExpense = () => {} }) => {
                 setAlertMessage("Expenses Created")
                 setAlertSeverity("Success")
             }
+          // If data is not fetch console.log out failing messages
         }catch(error){
             setAlertMessage("Failed to created expenses")
             setAlertSeverity("Failed")
@@ -57,7 +59,8 @@ const createExpense = ({addExpense = () => {} }) => {
         }
     }
   return (
-    <div><Dialog>
+    <div>
+    <Dialog>
     <DialogTrigger asChild>
       <div
         className="bg-slate-100 p-10 rounded-2xl

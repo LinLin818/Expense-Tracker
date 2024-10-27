@@ -37,6 +37,7 @@ return (
 
         <ul>{expenseList.map(expense => (
             <li key = {expense.id}>{expense.name}{expense.amount}</li>
+
         ))}
             </ul>
            
