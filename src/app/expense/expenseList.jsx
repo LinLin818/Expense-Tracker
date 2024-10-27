@@ -1,9 +1,9 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import db from "../../../database/dbconfig";
 import { expenses } from "../../../database/schema";
 
-function expenseList(){
+function ExpenseList({className}){
     const [expenseList, setExpenseList] = useState([])
     useEffect(() => {
         const fetchExpense = async () => {
@@ -21,13 +21,13 @@ function expenseList(){
     }, [])
 
 return (
-    <div>
+    <div  className = {className}>
         <h2>Expense tracker</h2>
         <ul>{expenseList.map(expense => (
-            <li>{expense.name}</li>
+            <li key = {expense.id}>{expense.name}</li>
         ))}
             </ul>
     </div>
 )
 }
-export default expenseList
+export default ExpenseList

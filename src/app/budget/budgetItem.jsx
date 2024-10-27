@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import db from '../../../database/dbconfig'
 import { budgets } from '../../../database/schema'
 
-function budgetItem() {
+function BudgetItem({className}) {
     const [budgetItem, setbudgetItem] = useState([])
     useEffect(() => {
         const fetchBudget = async () => {
@@ -20,7 +20,7 @@ function budgetItem() {
     fetchBudget()
 }, [])
 return(
-    <div>
+    <div className= {className}>
         <h2>Your Budgets</h2>
         <ul>
             {budgetItem.map(budget => (
@@ -31,4 +31,4 @@ return(
 )
 
 }
-export default budgetItem
+export default BudgetItem

@@ -19,7 +19,7 @@ import BasicAlerts from '../../components/ui/alert'; // Adjust the import path
 import { useEffect } from "react";
 import { useUser } from '@clerk/nextjs';
 
-const createIncome = ({addIncome = () => {} }) => {
+const CreateIncome = ({addIncome = () => {} }) => {
     const [emojiIcon, setEmojiIcon] = useState('😀')
     const [openEmojiPicker, setOpenEmojiPicker] = useState('')
     const [name, setName] = useState('')
@@ -132,4 +132,4 @@ const createIncome = ({addIncome = () => {} }) => {
   
 }
 
-export default createIncome
+export default CreateIncome
