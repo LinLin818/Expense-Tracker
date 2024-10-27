@@ -6,7 +6,9 @@ const page = () => {
   return (
     <div>
         <NavBar/>
-        <TransitionsModal/></div>
+        <TransitionsModal/>
+        <expenseList/>
+        </div>
   )
 }
 

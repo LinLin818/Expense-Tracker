@@ -1,10 +1,14 @@
 import React from 'react'
 import TransitionsModal from './createIncome'
+import NavBar from '../Footer/NavBar'
 
 const page = () => {
   return (
     
-    <div><TransitionsModal/></div>
+    <div>
+      <NavBar/>
+      <TransitionsModal/>
+      </div>
   )
 }
 
