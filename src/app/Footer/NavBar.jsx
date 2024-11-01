@@ -7,7 +7,7 @@ import React from 'react'
 import { Button } from "../../components/ui/button"
 
 
-const NavBar = () => {
+function NavBar(){
     // If the web is not loaded then return Loading...
     const {isSignedIn, isLoaded} = useUser()
     if(!isLoaded){
@@ -15,11 +15,13 @@ const NavBar = () => {
     }
    
   return (
-    <div className = "bg-cyan-600 flex p-6 justify-center items-center">
+    <div className = "bg-cyan-600 flex p-6 items-center justify-center">
         <div className = 'flex flex-row'>Expense Tracker</div>
     
      {isSignedIn ? (
-        <UserButton />
+
+        <UserButton/>
+  
       ) : (
         <div className="flex gap-3 items-center">
             <Link href = '/sign-up'>

@@ -12,16 +12,21 @@ const page = () => {
     return <div>Loading...</div>
   }
   return (
-    <div>
+    <>
+    <div className = 'flex'>
       
         <SideNav/>
+    </div>
+    <div className = 'ml-64'>
         <NavBar/>
         <CreateExpense/>
         <div className='flex justify-end'>
         <ExpenseList className = "text-violet-600"/>
         </div>
-        
         </div>
+        
+
+      </>
   )
 }
 

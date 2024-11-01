@@ -47,7 +47,7 @@ const BarChart = ({ budgetItems = [] }) => { // Default to an empty array
 
   return (
     <div>
-      <h2>Budget Bar Chart</h2>
+     
       <canvas ref={canvasRef}></canvas>
     </div>
   );

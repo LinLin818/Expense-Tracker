@@ -26,7 +26,7 @@ const CreateExpense = ({addExpense = () => {} }) => {
      const [emojiIcon, setEmojiIcon] = useState('😀')
      const [openEmojiPicker, setOpenEmojiPicker] = useState()
      const [alertMessage, setAlertMessage] = useState('')
-     const [alertSeverity, setAlertSeverity] = useState('')
+     const [alertSeverity, setAlertSeverity] = useState('success')
 
     useEffect(() => {
     let timer;

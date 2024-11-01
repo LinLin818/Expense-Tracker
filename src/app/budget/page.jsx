@@ -15,7 +15,7 @@ const Page = () => {
   return (
     <>
     <div className="flex">
-      <SideNav className="top-0" /> {/* Now it applies the top-16 class */}
+      <SideNav/>
       </div>
       <div className="ml-64"> {/* Adjust margin as per SideNav width */}
         <NavBar />

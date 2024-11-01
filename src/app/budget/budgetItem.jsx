@@ -40,11 +40,12 @@ function BudgetItem({ className, getTotalBudget }) {
 
   return (
     <div className={className}>
-      <h2>Your Budgets</h2>
+
       <ul>
         {budgetItems.length > 0 ? (
           budgetItems.map(budget => (
             <li key={budget.id}>
+              {budget.name}: 
               {budget.totalBudget}
             </li>
           ))
@@ -57,7 +58,7 @@ function BudgetItem({ className, getTotalBudget }) {
           ))
         )}
       </ul>
-      {/* Render the BarChart with budgetItems */}
+        {/* Displayng bar chart anf Pie chart */}
       <BarChart budgetItems={budgetItems} />
       <PieChart budgetItems={budgetItems} />
     </div>

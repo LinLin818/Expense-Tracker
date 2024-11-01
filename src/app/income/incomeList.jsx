@@ -34,7 +34,7 @@ function IncomeList({ className, onTotalRevenue }) {
 
     return (
         <div className={className}>
-            <h2>Income List</h2>
+        
             <ul>
                 {incomeList.map(income => (
                     <li key={income.id}>

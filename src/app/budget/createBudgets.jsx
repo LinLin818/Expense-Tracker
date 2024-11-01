@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   Dialog,
@@ -17,8 +16,9 @@ import db from "../../../database/dbconfig";
 import { useUser } from "@clerk/nextjs";
 import { budgets } from '../../../database/schema';
 import { Input } from "../../components/ui/input";
-import BasicAlerts from '../../components/ui/alert'; // Adjust the import path
+import BasicAlerts from '../../components/ui/alert'; 
 import { useEffect } from "react";
+
 function CreateBudget({ refreshData = () => {} }) {
   const [alertMessage, setAlertMessage] = useState('');
   const [alertSeverity, setAlertSeverity] = useState("success");

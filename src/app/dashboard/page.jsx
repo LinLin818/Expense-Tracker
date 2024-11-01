@@ -25,16 +25,18 @@ const dashboard = () => {
   return (
     <div className = "text-2xl text-violet-400">
       <SideNav/>
-      <NavBar/>
+      <div className = "ml-64">
+      <NavBar />
+      
       <h2 className = 'flex justify-center'>Welcome to the dashboard</h2>
       <div className="flex justify-center w-full mb-4"> {/* Centered and full width */}
-        <div className="bg-slate-100 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg"> {/* Full width and responsive max-width */}
+        <div className="bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg"> {/* Full width and responsive max-width */}
           Total Spending: ${totalSpend}<br />
           Total Earn: ${totalEarn}<br />
           Total Budget: ${totalBudget}<br />
         </div>
       </div>
-      <h2 className = 'flex justify-center'>Exepense List</h2>
+      <h2 className = 'flex justify-center'>Expense List</h2>
       <div className = "flex justify-center w-full mb-4">
         <ExpenseList className ="bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg  justify-end"  onTotalSpend = {handleTotalSpend}/>
         </div>
@@ -47,7 +49,7 @@ const dashboard = () => {
         <BudgetItem className = "bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg justify-end" getTotalBudget = {getTotalBudget}/>
         </div>
        
-    
+        </div>
       </div>
   )
 }

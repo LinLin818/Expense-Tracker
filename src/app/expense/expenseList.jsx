@@ -36,7 +36,7 @@ return (
     <div  className = {className}>
 
         <ul>{expenseList.map(expense => (
-            <li key = {expense.id}>{expense.name}{expense.amount}</li>
+            <li key = {expense.id}>{expense.name}:{expense.amount}</li>
 
         ))}
             </ul>
