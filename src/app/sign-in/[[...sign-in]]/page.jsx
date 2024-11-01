@@ -2,10 +2,15 @@ import { SignIn } from "@clerk/nextjs";
 
 export default function page(){
  return(
-    <div className = " sm:h-8 h-64 grid grid-cols-3 gap-4 content-evenly p-8">
-        Sign in 
+    <>
+    <div className = 'flex justify-center w-full h-16 bg-slate-300 '>
+        <h2 className = "m-4">Sign In</h2>
+     </div> 
+    <div className = "sm:h-8 flex justify-center m-4">
+    
         <SignIn fallbackRedirectUrl="dashboard"/>
     </div>
+    </>
     
  )
 }

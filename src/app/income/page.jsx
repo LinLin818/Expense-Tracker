@@ -17,11 +17,12 @@ const page = () => {
 
     <div>
      <SideNav/>
-      
+      <div className = "ml-64">
       <NavBar/>
       <CreateIncome/>
       <div className = 'flex justify-end'>
       <IncomeList className = 'text-violet-800'/>
+      </div>
       </div>
       </div>
   )
