@@ -4,7 +4,7 @@ import db from "../../../database/dbconfig";
 import { incomes } from "../../../database/schema";
 import { getTableColumns, sql } from "drizzle-orm";
 
-function IncomeList({ className, getIncomeList }) {
+function IncomeList({ className, onTotalRevenue }) {
     const [incomeList, setIncomeList] = useState([]);
 
     useEffect(() => {
@@ -23,14 +23,14 @@ function IncomeList({ className, getIncomeList }) {
                 // Calculate total earnings
                 const totalEarn = result.reduce((acc, income) => acc + (income.totalEarn || 0), 0); // Use totalEarn
                 setIncomeList(result);
-                getIncomeList(totalEarn); // Pass total earnings to parent component
+                onTotalRevenue(totalEarn); // Pass total earnings to parent component
             } catch (error) {
                 console.error("Failed to fetch data:", error);
             }
         };
 
         fetchIncome();
-    }, [getIncomeList]);
+    }, [onTotalRevenue]);
 
     return (
         <div className={className}>

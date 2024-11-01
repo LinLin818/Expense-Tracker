@@ -27,18 +27,27 @@ const dashboard = () => {
       <SideNav/>
       <NavBar/>
       <h2 className = 'flex justify-center'>Welcome to the dashboard</h2>
-      <h3 className = "text-xl flex justify-center text-stone-950">
-        Total Spending: ${totalSpend}<br/>
-        Total Earn: ${totalEarn}<br/>
-        Total Budget: ${totalBudget}<br/>
-  
-       
-      </h3>
-      <div className = "flex justify-end">
-      <ExpenseList className ="" onTotalSpend = {handleTotalSpend}/>
-        <IncomeList className = "" getIncomeList = {getIncomeList}/>
-        <BudgetItem className = "" getTotalBudget = {getTotalBudget}/>
+      <div className="flex justify-center w-full mb-4"> {/* Centered and full width */}
+        <div className="bg-slate-100 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg"> {/* Full width and responsive max-width */}
+          Total Spending: ${totalSpend}<br />
+          Total Earn: ${totalEarn}<br />
+          Total Budget: ${totalBudget}<br />
+        </div>
       </div>
+      <h2 className = 'flex justify-center'>Exepense List</h2>
+      <div className = "flex justify-center w-full mb-4">
+        <ExpenseList className ="bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg  justify-end"  onTotalSpend = {handleTotalSpend}/>
+        </div>
+        <h2 className = 'flex justify-center'>Income List</h2>
+      <div className = 'flex justify-center w-full mb-4'>
+        <IncomeList className = "bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg justify-end" onTotalRevenue = {getIncomeList}/>
+      </div>
+      <h2 className = 'flex justify-center'>Your Budget</h2>
+      <div className = 'flex justify-center w-full mb-4'>
+        <BudgetItem className = "bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg justify-end" getTotalBudget = {getTotalBudget}/>
+        </div>
+       
+    
       </div>
   )
 }

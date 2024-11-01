@@ -1,12 +1,21 @@
 import React from 'react';
-import { Alert, Stack } from '@mui/material';
+import { Stack, Alert } from '@mui/material'; // Ensure you're importing these from MUI
 
-export default function BasicAlerts({ message, severity }) {
+function YourComponent({ message, severity }) {
   return (
-    <Stack sx={{ width: '100%' }} spacing={2}>
-      {message && (
-        <Alert severity={severity}>{message}</Alert>
-      )}
-    </Stack>
+    <div style={{
+      display: 'flex',
+      justifyContent: 'center', // Center horizontally
+      alignItems: 'center', // Center vertically
+      height: '100vh' // Full viewport height
+    }}>
+      <Stack sx={{ width: '50' }} spacing={2}>
+        {message && (
+          <Alert severity={severity}>{message}</Alert>
+        )}
+      </Stack>
+    </div>
   );
 }
+
+export default YourComponent;

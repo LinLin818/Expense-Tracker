@@ -1,5 +1,5 @@
 "use client"
-import React from 'react'
+import React, { useEffect } from 'react'
 import db from "../../../database/dbconfig"
 import { budgets, expenses } from '../../../database/schema'
 import { useState } from 'react'
@@ -18,7 +18,8 @@ import { Button } from "../../components/ui/button";
 import { Input } from "../../components/ui/input";
 import BasicAlerts from '../../components/ui/alert';
 
-const createExpense = ({addExpense = () => {} }) => {
+
+const CreateExpense = ({addExpense = () => {} }) => {
      // Set States
      const [name, setName] = useState('')
      const [amount, setAmount] = useState('')
@@ -26,6 +27,16 @@ const createExpense = ({addExpense = () => {} }) => {
      const [openEmojiPicker, setOpenEmojiPicker] = useState()
      const [alertMessage, setAlertMessage] = useState('')
      const [alertSeverity, setAlertSeverity] = useState('')
+
+    useEffect(() => {
+    let timer;
+    if (alertMessage) {
+      timer = setTimeout(() => {
+        setAlertMessage('')
+      }, 3000)
+    }
+    return () => clearTimeout(timer);
+  }, [alertMessage]);
      // get data from the database
      const onCreateExpense = async() => {
         try {
@@ -129,4 +140,4 @@ const createExpense = ({addExpense = () => {} }) => {
   )
 }
 
-export default createExpense
+export default CreateExpense
