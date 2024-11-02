@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import db from "../../../database/dbconfig";
 import { expenses } from "../../../database/schema";
-import { getTableColumns, sql } from "drizzle-orm";
+import { getTableColumns, sql, eq } from "drizzle-orm";
+import { useUser } from "@clerk/nextjs";
 
 function ExpenseList({className,onTotalSpend}){
     const [expenseList, setExpenseList] = useState([])
-   
+    const {user} = useUser()
     useEffect(() => {
         const fetchExpense = async () => {
             try{
@@ -18,6 +19,7 @@ function ExpenseList({className,onTotalSpend}){
                 })
                 .from(expenses)
                 .groupBy(expenses.id)
+                .where(eq(expenses.createdBy, user.primaryEmailAddress.emailAddress))
                 
               
 
@@ -36,7 +38,7 @@ return (
     <div  className = {className}>
 
         <ul>{expenseList.map(expense => (
-            <li key = {expense.id}>{expense.name}:{expense.amount}</li>
+            <li key = {expense.id}>{expense.name}: ${expense.amount}</li>
 
         ))}
             </ul>

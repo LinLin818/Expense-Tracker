@@ -136,6 +136,9 @@ const CreateExpense = ({addExpense = () => {} }) => {
     </DialogContent>
     <BasicAlerts message={alertMessage} severity={alertSeverity} />
   </Dialog>
+  <div>
+
+  </div>
 </div>
   )
 }

@@ -7,8 +7,10 @@ const page = () => {
    
     <div>
         <SideNav/>
+        <div className = "ml-64">
         <NavBar/>
         <InputGoal/>
+        </div>
     </div>
   )
 }

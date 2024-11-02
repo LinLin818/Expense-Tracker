@@ -2,11 +2,12 @@
 import { useEffect, useState } from "react";
 import db from "../../../database/dbconfig";
 import { incomes } from "../../../database/schema";
-import { getTableColumns, sql } from "drizzle-orm";
+import { getTableColumns, sql, eq } from "drizzle-orm";
+import { useUser } from "@clerk/nextjs";
 
 function IncomeList({ className, onTotalRevenue }) {
     const [incomeList, setIncomeList] = useState([]);
-
+    const {user} = useUser()
     useEffect(() => {
         const fetchIncome = async () => {
             try {
@@ -16,8 +17,8 @@ function IncomeList({ className, onTotalRevenue }) {
                         totalEarn: sql`sum(${incomes.amount})`.mapWith(Number)
                     })
                     .from(incomes)
-                    .groupBy(incomes.id); // Group by income ID or other relevant columns
-                
+                    .groupBy(incomes.id) // Group by income ID or other relevant columns
+                    .where(eq(incomes.createdBy, user.primaryEmailAddress.emailAddress))
              
 
                 // Calculate total earnings

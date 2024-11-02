@@ -1,11 +1,11 @@
+'use client'
 import React, { useEffect, useState } from 'react';
 import db from '../../../database/dbconfig';
 import { budgets, expenses } from '../../../database/schema';
 import { eq, sql, desc, getTableColumns } from 'drizzle-orm';
 import { useUser } from '@clerk/nextjs';
-import BarChart from '../charts/graphBar';
-import PieChart from '../charts/pieCharts';
-
+import BarChart from '../charts/graphBar'
+import PieChart from '../charts/pieCharts'
 function BudgetItem({ className, getTotalBudget }) {
   const [budgetItems, setBudgetItems] = useState([]);
   const { user } = useUser();
@@ -18,7 +18,7 @@ function BudgetItem({ className, getTotalBudget }) {
           .select({
             ...getTableColumns(budgets),
             totalBudget: sql`sum(${budgets.amount})`.mapWith(Number),
-            totalSpend: sql`COALESCE(sum(${expenses.amount}),0)`.mapWith(Number),
+            totalSpend: sql`COALESCE(sum(${expenses.amount}), 0)`.mapWith(Number),
             totalItem: sql`count(${expenses.id})`.mapWith(Number)
           })
           .from(budgets)
@@ -40,27 +40,15 @@ function BudgetItem({ className, getTotalBudget }) {
 
   return (
     <div className={className}>
-
-      <ul>
-        {budgetItems.length > 0 ? (
-          budgetItems.map(budget => (
-            <li key={budget.id}>
-              {budget.name}: 
-              {budget.totalBudget}
+      
+      <ul>{budgetItems.map(budget => (
+            <li key={budget.id}>{budget.name}: 
+              ${budget.totalBudget.toFixed(2)}
             </li>
-          ))
-        ) : (
-          [1, 2, 3, 4, 5].map((index) => (
-            <div
-              key={index}
-              className="w-full bg-slate-200 rounded-lg h-[150px] animate-pulse"
-            ></div>
-          ))
-        )}
+          ))}
       </ul>
-        {/* Displayng bar chart anf Pie chart */}
-      <BarChart budgetItems={budgetItems} />
-      <PieChart budgetItems={budgetItems} />
+      <BarChart budgetItems={budgetItems} /> {/* Pass the budgetItems prop */}
+      <PieChart budgetItems={budgetItems}/>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import NavBar from '../Footer/NavBar'
 import SideNav from '../Footer/sidenav'
 import { useUser } from '@clerk/nextjs'
 import CreateExpense from './createExpense'
+
  {/* If the website is still fetching data and not completely loaded */}
 const page = () => {
   const {isLoaded} = useUser()
@@ -22,6 +23,7 @@ const page = () => {
         <CreateExpense/>
         <div className='flex justify-end'>
         <ExpenseList className = "text-violet-600"/>
+        
         </div>
         </div>
         

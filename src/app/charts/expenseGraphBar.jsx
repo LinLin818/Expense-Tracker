@@ -4,19 +4,14 @@ import { Chart, registerables } from 'chart.js';
 // Register all necessary components
 Chart.register(...registerables);
 
-const BarChart = ({ budgetItems = [] }) => { // Default to an empty array
+const ExpenseBarGraph = ({ expenseList = [] }) => { // Default to an empty array
   const canvasRef = useRef(null);
 
   useEffect(() => {
     const ctx = canvasRef.current.getContext('2d');
 
-    if (budgetItems.length === 0) {
-      // No data to display
-      return;
-    }
-
-    // Prepare data for the chart
-    const labels = budgetItems.map(item => `${item.name}`); // Adjust label as needed
+    // Prepare data for the chart only if budgetItems is available
+    const labels = budgetItems.map(item => `Budget ${item.id}`); // Adjust as needed
     const data = budgetItems.map(item => item.totalBudget || 0);
 
     // Create the chart
@@ -37,6 +32,7 @@ const BarChart = ({ budgetItems = [] }) => { // Default to an empty array
       options: {
         scales: {
           y: {
+            type: 'linear',
             beginAtZero: true,
           },
         },
@@ -51,9 +47,10 @@ const BarChart = ({ budgetItems = [] }) => { // Default to an empty array
 
   return (
     <div>
+     
       <canvas ref={canvasRef}></canvas>
     </div>
   );
 };
 
-export default BarChart;
+export default ExpenseBarGraph;

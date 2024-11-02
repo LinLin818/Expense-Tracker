@@ -46,7 +46,7 @@ const dashboard = () => {
       </div>
       <h2 className = 'flex justify-center'>Your Budget</h2>
       <div className = 'flex justify-center w-full mb-4'>
-        <BudgetItem className = "bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg justify-end" getTotalBudget = {getTotalBudget}/>
+      <BudgetItem className = "bg-slate-200 p-10 rounded-2xl border-2 border-dashed hover:shadow-md w-full max-w-lg justify-end" getTotalBudget = {getTotalBudget}/>
         </div>
        
         </div>

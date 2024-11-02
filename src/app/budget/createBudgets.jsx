@@ -1,5 +1,6 @@
-"use client";
-import React, { useState } from "react";
+'use client';
+import React, { useState, useEffect } from "react";
+ // Adjust the path as needed
 import {
   Dialog,
   DialogClose,
@@ -15,11 +16,10 @@ import { Button } from "../../components/ui/button";
 import db from "../../../database/dbconfig";
 import { useUser } from "@clerk/nextjs";
 import { budgets } from '../../../database/schema';
-import { Input } from "../../components/ui/input";
-import BasicAlerts from '../../components/ui/alert'; 
-import { useEffect } from "react";
+import { Input } from "../../components/ui/input"; 
+import BasicAlerts from '../../components/ui/alert';
 
-function CreateBudget({ refreshData = () => {} }) {
+function CreateBudget({ refreshData = () => {}, budgetItems = [] }) { // Added budgetItems as a prop
   const [alertMessage, setAlertMessage] = useState('');
   const [alertSeverity, setAlertSeverity] = useState("success");
   const [emojiIcon, setEmojiIcon] = useState("😀");
@@ -28,22 +28,24 @@ function CreateBudget({ refreshData = () => {} }) {
   const [amount, setAmount] = useState("");
 
   const { user } = useUser();
+
   useEffect(() => {
     let timer;
     if (alertMessage) {
       timer = setTimeout(() => {
-        setAlertMessage('')
-      }, 3000)
+        setAlertMessage('');
+      }, 3000);
     }
     return () => clearTimeout(timer);
   }, [alertMessage]);
+
   const onCreateBudget = async () => {
     try {
       const result = await db
         .insert(budgets)
         .values({
-          name: name,
-          amount: amount,
+          name,
+          amount,
           createdBy: user?.primaryEmailAddress?.emailAddress,
           icon: emojiIcon,
         })
@@ -64,11 +66,7 @@ function CreateBudget({ refreshData = () => {} }) {
     <div>
       <Dialog>
         <DialogTrigger asChild>
-          <div
-            className="bg-slate-100 p-10 rounded-2xl
-            items-center flex flex-col border-2 border-dashed
-            cursor-pointer hover:shadow-md"
-          >
+          <div className="bg-slate-100 p-10 rounded-2xl items-center flex flex-col border-2 border-dashed cursor-pointer hover:shadow-md">
             <h2 className="text-3xl">+</h2>
             <h2>Create New Budget</h2>
           </div>
@@ -78,11 +76,7 @@ function CreateBudget({ refreshData = () => {} }) {
             <DialogTitle>Create New Budget</DialogTitle>
             <DialogDescription>
               <div className="mt-5">
-                <Button
-                  variant="outline"
-                  className="text-lg"
-                  onClick={() => setOpenEmojiPicker(!openEmojiPicker)}
-                >
+                <Button variant="outline" className="text-lg" onClick={() => setOpenEmojiPicker(!openEmojiPicker)}>
                   {emojiIcon}
                 </Button>
                 {openEmojiPicker && (
@@ -97,29 +91,18 @@ function CreateBudget({ refreshData = () => {} }) {
                 )}
                 <div className="mt-2">
                   <h2 className="text-black font-medium my-1">Budget Name</h2>
-                  <Input
-                    placeholder="e.g. Home Decor"
-                    onChange={(e) => setName(e.target.value)}
-                  />
+                  <Input placeholder="e.g. Home Decor" onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div className="mt-2">
                   <h2 className="text-black font-medium my-1">Budget Amount</h2>
-                  <Input
-                    type="number"
-                    placeholder="e.g. 5000$"
-                    onChange={(e) => setAmount(e.target.value)}
-                  />
+                  <Input type="number" placeholder="e.g. 5000$" onChange={(e) => setAmount(e.target.value)} />
                 </div>
               </div>
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="sm:justify-start">
             <DialogClose asChild>
-              <Button
-                disabled={!(name && amount)}
-                onClick={onCreateBudget}
-                className="mt-5 w-full rounded-full"
-              >
+              <Button disabled={!(name && amount)} onClick={onCreateBudget} className="mt-5 w-full rounded-full">
                 Create Budget
               </Button>
             </DialogClose>
@@ -127,6 +110,8 @@ function CreateBudget({ refreshData = () => {} }) {
         </DialogContent>
         <BasicAlerts message={alertMessage} severity={alertSeverity} />
       </Dialog>
+
+
     </div>
   );
 }

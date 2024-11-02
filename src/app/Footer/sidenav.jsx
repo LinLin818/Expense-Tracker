@@ -1,8 +1,7 @@
 import { Button } from "@mui/material";
-import { Activity, Goal, PiggyBankIcon, ReceiptIcon } from "lucide-react";
+import { Activity, Goal, PiggyBankIcon, Check, DollarSignIcon} from "lucide-react";
 import Link from "next/link";
 import React from 'react';
-import { UserButton } from '@clerk/nextjs';
 
 function SideNav({ className }) {
   return (
@@ -38,13 +37,13 @@ function SideNav({ className }) {
         </Link>
       </div>
       <div className="flex items-center p-4">
-        <PiggyBankIcon className="w-8 h-8 mr-2" />
+        <DollarSignIcon className="w-8 h-8 mr-2" />
         <Link href={'/budget'}>
           <Button className='w-full text-left'>Budget</Button>
         </Link>
       </div>
       <div className="flex items-center p-4">
-        <ReceiptIcon className="w-8 h-8 mr-2" />
+        <Check className="w-8 h-8 mr-2" />
         <Link href={'/income'}>
           <Button className='w-full text-left'>Income</Button>
         </Link>
